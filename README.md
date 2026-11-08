@@ -39,11 +39,14 @@ git clone https://github.com/MapleKaedee/nix-environment.git ~/Projects/nix-envi
 
 ```json
 {
+  "$schema": "https://opencode.ai/config.json",
   "skills": ["~/Projects/nix-environment/skills"]
 }
 ```
 
-opencode then lists `nix-environment` among its skills and loads it when a task matches. Update with `git pull` in the clone.
+The skill ID is `nix-environment`, taken from the folder name. opencode lists it to the model and loads it when a task matches. To load it yourself, mention `@nix-environment` in the prompt. Update with `git pull` in the clone.
+
+Keep only one copy for opencode. A second `nix-environment` folder in `~/.config/opencode/skills`, `~/.claude/skills` or `~/.agents/skills` defines the same ID, and opencode then loads only one of them.
 
 ## Contents
 

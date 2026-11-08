@@ -9,6 +9,8 @@ description: Use when a project has flake.nix, nix/devshell.nix, or an .envrc wi
 
 This skill sets up every dev environment, in any language, with one flake pattern: numtide devshell + treefmt-nix + git-hooks.nix, split into `nix/` modules and loaded by nix-direnv. Reproduce this pattern exactly. Generic Nix setups are wrong here even when they work: plain `mkShell` + `shellHook`, flake-utils or multi-system `genAttrs`, a bare `use flake` `.envrc`.
 
+Paths in this skill, such as `languages.md` and `templates/`, are relative to the folder that contains this `SKILL.md`. That folder is the base directory the agent receives when the skill loads.
+
 ## Recognise it
 
 | File               | Holds                                                                                                                                                                                                                                                                         |
@@ -28,7 +30,7 @@ The toolchain always comes from Nix. How the project's own libraries are managed
 
 1. If the folder is not a Git repo, ask the user to run `git init -b main`.
 2. Settle the dependency question above.
-3. Copy this skill's `templates/` folder into the project: `cp -r <skill base directory>/templates/. .` (the base directory is shown when the skill loads). Replace `PROJECT` in `flake.nix` and `nix/devshell.nix`. If the machine is not `x86_64-linux`, set `system` to the output of `nix eval --raw --impure --expr builtins.currentSystem`.
+3. Copy `templates/` into the project with `cp -r <base directory>/templates/. .`, which also copies `.envrc`. Replace `PROJECT` in `flake.nix` and `nix/devshell.nix`. If the machine is not `x86_64-linux`, set `system` to the output of `nix eval --raw --impure --expr builtins.currentSystem`.
 4. Add the language with the five slots in `languages.md`.
 5. Add this block to `.gitignore` (create the file if missing), plus the language's build and cache folders:
    ```gitignore
