@@ -1,17 +1,17 @@
 # nix-environment
 
-A Claude Code plugin with one skill, `nix-environment`. It teaches Claude to set up and work inside Nix flake dev environments for any language, always with the same layout:
+One agent skill, `nix-environment`, packaged as a Claude Code plugin and usable from opencode. It teaches the agent to set up and work inside Nix flake dev environments for any language, always with the same layout:
 
 - `flake.nix` with `nixpkgs`, [devshell](https://github.com/numtide/devshell), [treefmt-nix](https://github.com/numtide/treefmt-nix) and [git-hooks.nix](https://github.com/cachix/git-hooks.nix)
 - `nix/devshell.nix`, `nix/treefmt.nix` and `nix/hooks.nix` modules
 - `.envrc` for [nix-direnv](https://github.com/nix-community/nix-direnv)
 - `env.md` with setup docs
 
-The toolchain always comes from Nix. Before choosing how a project's own libraries are managed, Claude asks you.
+The toolchain always comes from Nix. Before choosing how a project's own libraries are managed, the agent asks you.
 
-## Install
+## Claude Code
 
-In a terminal:
+Install in a terminal:
 
 ```sh
 claude plugin marketplace add MapleKaedee/nix-environment
@@ -22,12 +22,28 @@ Or in claude.ai: Customize > Plugins > Add > Add marketplace, then enter `MapleK
 
 The skill is then available as `/nix-environment:nix-environment`, and Claude also loads it on its own when a task matches.
 
-## Update
+Update:
 
 ```sh
 claude plugin marketplace update kaede-plugins
 claude plugin update nix-environment@kaede-plugins
 ```
+
+## opencode
+
+Clone the repo, then add its `skills/` folder to the `skills` array in `~/.config/opencode/opencode.json`:
+
+```sh
+git clone https://github.com/MapleKaedee/nix-environment.git ~/Projects/nix-environment
+```
+
+```json
+{
+  "skills": ["~/Projects/nix-environment/skills"]
+}
+```
+
+opencode then lists `nix-environment` among its skills and loads it when a task matches. Update with `git pull` in the clone.
 
 ## Contents
 

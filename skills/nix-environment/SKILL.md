@@ -22,7 +22,7 @@ This skill sets up every dev environment, in any language, with one flake patter
 
 ## Project dependencies: an open question
 
-The toolchain always comes from Nix. How the project's own libraries are managed differs per project, and per stack inside one project (for example, Python libraries in `flake.nix` next to a `web/` frontend managed by pnpm). If neither `env.md` nor `CLAUDE.md` records it for the stack you are touching, ask the user before editing anything, and wait for the answer. The two options are listed in `languages.md` ("Project dependencies: ask first"). Record the answer in `env.md`.
+The toolchain always comes from Nix. How the project's own libraries are managed differs per project, and per stack inside one project (for example, Python libraries in `flake.nix` next to a `web/` frontend managed by pnpm). If neither `env.md` nor the agent instructions file (`CLAUDE.md` or `AGENTS.md`) records it for the stack you are touching, ask the user before editing anything, and wait for the answer. The two options are listed in `languages.md` ("Project dependencies: ask first"). Record the answer in `env.md`.
 
 ## Scaffolding a new project
 
