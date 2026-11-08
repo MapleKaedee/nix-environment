@@ -1,0 +1,12 @@
+{
+  "name": "kaede-plugins",
+  "owner": { "name": "MapleKaedee" },
+  "description": "Claude Code plugins by MapleKaedee",
+  "plugins": [
+    {
+      "name": "nix-environment",
+      "source": "./",
+      "description": "Nix flake dev environments for any language"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "nix-environment",
+  "description": "Nix flake dev environments for any language: numtide devshell, treefmt-nix, git-hooks.nix and nix-direnv in one consistent layout",
+  "author": { "name": "MapleKaedee" },
+  "license": "MIT"
+}
