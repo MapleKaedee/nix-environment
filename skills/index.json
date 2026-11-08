@@ -1,0 +1,17 @@
+{
+  "skills": [
+    {
+      "name": "nix-environment",
+      "version": "1",
+      "files": [
+        "SKILL.md",
+        "languages.md",
+        "templates/.envrc",
+        "templates/flake.nix",
+        "templates/nix/devshell.nix",
+        "templates/nix/hooks.nix",
+        "templates/nix/treefmt.nix"
+      ]
+    }
+  ]
+}

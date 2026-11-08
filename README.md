@@ -31,20 +31,20 @@ claude plugin update nix-environment@kaede-plugins
 
 ## opencode
 
-Clone the repo, then add its `skills/` folder to the `skills` array in `~/.config/opencode/opencode.json`:
-
-```sh
-git clone https://github.com/MapleKaedee/nix-environment.git ~/Projects/nix-environment
-```
+No clone needed. `skills/index.json` makes this repo an opencode HTTP skill catalog. Add its URL to the `skills` array in `~/.config/opencode/opencode.json`:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "skills": ["~/Projects/nix-environment/skills"]
+  "skills": [
+    "https://raw.githubusercontent.com/MapleKaedee/nix-environment/main/skills/"
+  ]
 }
 ```
 
-The skill ID is `nix-environment`, taken from the folder name. opencode lists it to the model and loads it when a task matches. To load it yourself, mention `@nix-environment` in the prompt. Update with `git pull` in the clone.
+opencode downloads the files listed in `skills/index.json` into its cache. The skill ID is `nix-environment`. opencode lists it to the model and loads it when a task matches. To load it yourself, mention `@nix-environment` in the prompt.
+
+opencode downloads the files again only when `version` in `skills/index.json` changes.
 
 Keep only one copy for opencode. A second `nix-environment` folder in `~/.config/opencode/skills`, `~/.claude/skills` or `~/.agents/skills` defines the same ID, and opencode then loads only one of them.
 
@@ -54,6 +54,7 @@ Keep only one copy for opencode. A second `nix-environment` folder in `~/.config
 .claude-plugin/
   plugin.json
   marketplace.json
+skills/index.json   # opencode catalog: skill files and version
 skills/nix-environment/
   SKILL.md        # the pattern, rules and troubleshooting
   languages.md    # how to add any language, with a table of common stacks
@@ -65,4 +66,10 @@ skills/nix-environment/
 ```sh
 claude plugin validate .
 claude --plugin-dir .
+```
+
+After changing anything in `skills/nix-environment/`, raise `version` in `skills/index.json`, so opencode downloads the new files. Keep its `files` list equal to the tracked files. This prints nothing when they match:
+
+```sh
+diff <(cd skills/nix-environment && git ls-files | sort) <(jq -r '.skills[0].files[]' skills/index.json | sort)
 ```
